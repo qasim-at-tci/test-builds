@@ -2,31 +2,18 @@ os: linux
 group: edge
 dist: trusty
 
-language: java
+language: android
 
-stages:
-  - build-cdp
-  - tests
+android:
+  components:
+    - tools
+    - build-tools-30.0.3
+    - android-30
 
-jobs:
-  include:
-    - stage: build-cdp
-      dist: trusty
-      language: java
-      before_install:
-        - curl -s "https://get.sdkman.io" | bash
-        - source "$HOME/.sdkman/bin/sdkman-init.sh"
-        - sdk install java 11.0.12-open
-      script:
-        - java -version
-    - stage: tests
-      dist: xenial
-      language: java
-      before_install:
-        - sudo apt-get -y remove default-jdk
-        - sudo apt -y autoremove
-        - curl -s "https://get.sdkman.io" | bash
-        - source "$HOME/.sdkman/bin/sdkman-init.sh"
-        - sdk install java 13.0.2-open
-      script:
-        - java -version
+before_install:
+  - curl -s "https://get.sdkman.io" | bash
+  - source "$HOME/.sdkman/bin/sdkman-init.sh"
+  - sdk install java 11.0.12-open
+
+script:
+  - java -version
