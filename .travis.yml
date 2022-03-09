@@ -56,6 +56,7 @@ jobs:
         - curl -s "https://get.sdkman.io" | bash
         - source "$HOME/.sdkman/bin/sdkman-init.sh"
         - sdk install java 8.0.302-open
+        - sdk use java 8.0.302-open
         - java -version
       script:
         - echo $JAVA_HOME
@@ -69,6 +70,7 @@ jobs:
         - curl -s "https://get.sdkman.io" | bash
         - source "$HOME/.sdkman/bin/sdkman-init.sh"
         - sdk install java 8.0.302-open
+        - sdk use java 8.0.302-open
         - java -version
       script:
         - echo $JAVA_HOME
