@@ -1,6 +1,6 @@
 sudo: true
 language: php
-dist: xenial
+dist: bionic
 
 # Adjust the version of PHP to match your production environment.
 # Making this version number greater than the production environment can have unintended consequences
