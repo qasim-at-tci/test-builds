@@ -1,18 +1,13 @@
-sudo: true
+os: linux
+dist: trusty
 language: php
-dist: bionic
+php: 7.4
 
-# Adjust the version of PHP to match your production environment.
-# Making this version number greater than the production environment can have unintended consequences
-# including a non-functional prod environment.
-php:
-  - 7.4
-
-matrix:
-  fast_finish: true
-
-services:
-  - mysql
-
-jdk:
-  - oraclejdk8
+jobs:
+  include:
+    - dist: trusty
+    - dist: xenial
+    - dist: bionic
+    - dist: focal
+script:
+  - php --version
