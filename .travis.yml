@@ -1,13 +1,9 @@
 os: linux
-dist: trusty
+dist: xenial
 language: php
-php: 7.4
+php:
+  - 7.3
+  - 8.1
+  - 7.4
 
-jobs:
-  include:
-    - dist: trusty
-    - dist: xenial
-    - dist: bionic
-    - dist: focal
-script:
-  - php --version
+script: php --version
