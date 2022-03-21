@@ -1,28 +1,31 @@
 os: linux
 dist: trusty
-language: php
 
 jobs:
   include:
     - dist: trusty
+      language: php
       php:
         - 7.3
         - 8.1
         - 7.4
         - 7.4
     - dist: xenial
+      language: php
       php:
         - 7.3
         - 8.1
         - 7.4
         - 7.4
     - dist: bionic
+      language: php
       php:
         - 7.3
         - 8.1
         - 7.4
         - 7.4
     - dist: focal
+      language: php
       php:
         - 7.3
         - 8.1
