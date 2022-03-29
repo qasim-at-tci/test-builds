@@ -9,10 +9,10 @@ matrix:
 before_script:
   - pyenv install 3.9.7
   - pyenv local 3.9.7
-  - pip install pip --upgrade --user
-  - pip install awscli --upgrade --user
+  - pip install pip --upgrade
+  - pip install awscli --upgrade
   - export PATH=$PATH:$HOME/.local/bin
-  - pip install --user aws-sam-cli
+  - pip install aws-sam-cli
 
 script:
   pip --version
