@@ -1,40 +1,19 @@
-language: android
-jdk: oraclejdk11
-android:
-  components:
-    - tools
-    - build-tools-$OMSDK_BUILDTOOLS
-    - platform-tools
-    - extra-android-m2repository
-    - extra-google-android-support
-    - android-$OMSDK_API
-    - sys-img-$OMSDK_ABI-$EMU_FLAVOR-$OMSDK_API
+language: python
 
-licenses:
-  - "android-sdk-preview-license-.+"
-  - "android-sdk-license-.+"
-  - "google-gdk-license-.+"
+python:
+  - 3.7
 
-# https://docs.travis-ci.com/user/environment-variables
-env:
-  global:
-    - ANDROID_HOME=${HOME}/android-sdk
-    - ANDROID_COMMANDLINE_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip"
+matrix:
+  fast_finish: true
 
-before_install:
-  # Set up Android Commandline Tools
-  - wget -q "${ANDROID_COMMANDLINE_TOOLS_URL}" -O android-commandline-tools.zip
-  - mkdir -p ${ANDROID_HOME}/cmdline-tools
-  - unzip -q android-commandline-tools.zip -d ${ANDROID_HOME}/cmdline-tools
-  - mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest
-  - export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/cmdline-tools/tools/bin:$PATH
-  - rm android-commandline-tools.zip
+before_script:
+  - pyenv install 3.9.7
+  - pyenv local 3.9.7
+  - pip install pip --upgrade --user
+  - pip install awscli --upgrade --user
+  - export PATH=$PATH:$HOME/.local/bin
+  - pip install --user aws-sam-cli
 
-  # Avoid harmless sdkmanager warning
-  - mkdir ~/.android
-  - echo 'count=0' > ~/.android/repositories.cfg
+script:
+  pip --version
 
-  # Accept all Android license agreements
-  - yes | sdkmanager --licenses
-
-  - adb logcat > logcat.log &
