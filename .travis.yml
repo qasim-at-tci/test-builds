@@ -1,18 +1,12 @@
-language: python
+os: linux
+dist: xenial
 
-python:
-  - "2.7"
-  - "3.5"
-
-# matrix:
-#   fast_finish: true
-
-virtualenv:
-  system_site_packages: true
+matrix:
+  fast_finish: true
 
 before_script:
-  # - pyenv install 3.9.7
-  # - pyenv local 3.9.7
+  - pyenv install 3.9.7
+  - pyenv local 3.9.7
   - pip install pip --upgrade --user
   - pip install awscli --upgrade --user
   - export PATH=$PATH:$HOME/.local/bin
