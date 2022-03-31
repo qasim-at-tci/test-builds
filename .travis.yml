@@ -1,14 +1,14 @@
-language: python
+language: node_js
 
-python:
-  - 3.7
+node_js:
+  - "14"
 
 matrix:
   fast_finish: true
 
 before_script:
-  # - pyenv install 3.9.7
-  # - pyenv local 3.9.7
+  - pyenv install 3.9.7
+  - pyenv local 3.9.7
   - pip install pip --upgrade --user
   - pip install awscli --upgrade --user
   - export PATH=$PATH:$HOME/.local/bin
