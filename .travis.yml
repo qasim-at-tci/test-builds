@@ -1,9 +1,17 @@
-os: linux
-dist: focal
-arch: arm64-graviton2
-virt: vm
-language: shell
-group: edge
+language: python
 
-script:
-  - uname -a
+python:
+  - 3.7
+
+matrix:
+  fast_finish: true
+
+before_script:
+  # - pyenv install 3.9.7
+  # - pyenv local 3.9.7
+  - pip install pip --upgrade --user
+  - pip install awscli --upgrade --user
+  - export PATH=$PATH:$HOME/.local/bin
+  - pip install --user aws-sam-cli
+
+script: pip --version
