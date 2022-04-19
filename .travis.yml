@@ -1,21 +1,7 @@
 language: node_js
 
 node_js:
-  - node
-
-python:
-  - "3.7"
-
-cache:
-  - pip
-
-install:
-  - pip install --user awscli
-  - npm install
-
-before_script:
-  - npm install grunt-cli -g
-  - gem install sass
+  - 17
 
 script:
   - node --version
