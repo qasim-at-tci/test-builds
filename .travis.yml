@@ -1,7 +1,20 @@
-language: node_js
-
-node_js:
-  - node
-
+arch: ppc64le
+language: shell
+os: linux
+dist: focal
+install:
+  - wget -q https://github.com/aquasecurity/trivy/releases/download/v0.66.0/trivy_0.66.0_Linux-PPC64LE.tar.gz
+  - tar -xzf trivy_0.66.0_Linux-PPC64LE.tar.gz
+  - chmod +x trivy
+  - sudo mv trivy /usr/bin
+  - sleep 10
 script:
-  - node --version
+  - trivy --version
+  - git clone https://github.com/apache/camel-quarkus.git camel
+  - cd camel && git checkout tags/3.26.0
+  - sleep 10
+  - free -hm
+  - echo "Executing trivy scanner"
+  - sudo trivy fs -q --timeout 50m -f json --scanners vuln --skip-dirs .git --skip-dirs target --skip-dirs build --parallel 1 . > trivy_source_vulnerabilities_results.json
+  - echo trivy_source_vulnerabilities_results.json
+  - sleep 15
